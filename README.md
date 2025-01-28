@@ -6,4 +6,47 @@ This repo has a selection of some embedded related benchmarks, namely dhrystone,
 ## How To's
 I tried making things as straightforward as possible by having a Makefile for each benchmark handling the compilation and cleanup process. I haven't got that much experience so it most likely is not up to standard or just messy, but should work. I'll provide more info in the respective benchmark folders. 
 
+## Environment
+For the project, the target is a 32-Bit PowerPC architecture with a MPC8548E Processor (e500 core). The goal is to run the benchmarks in this repo on this target. Specifically, the emulated target. We make use of QEMU/KVM for this, as well as buildroot for a linux kernel. To configure and compile the kernel for this target, buildroot needs to be installed. You can configure from scratch, or simply use some predefined default configs. 
 
+In the buildroot directory you can find all those configs under configs/. To apply, simply do:
+
+~~~
+make qemu_ppc_mpc8544ds_defconfig
+~~~
+
+This will write some default configuration in the .config file. To configure things yourself, open the config menu with:
+
+~~~
+make menuconfig
+~~~
+
+This opens a user friendly GUI in the terminal, where you can click through and apply changes as you wish, as well as choosing packages to be installed. After finishing configuration, call make. 
+
+As a note here: Dhrystone, Whetstone and CoreMark can be chosen as packages and buildroot will pull the source and compile automatically for the current selected target. 
+
+You'll end up with the binary in your emulated system. For this project it was important for me to not be reliant on buildroot to do that, so I essentially looked at how buildroot does all the compilation, simplified and structured it for easier use. 
+
+Compiling the kernel will take a lot of time, so dedicate your entire morning for this process. After this is finished, we can start a QEMU instance with:
+
+~~~
+./output/host/usr/bin/qemu-system-ppc \
+  -M mpc8544ds \
+  -cpu mpc8548e \
+  -m 256 \
+  -kernel output/images/vmlinux \
+  -append 'console=ttyS0 root=/dev/ram0' \
+  -initrd output/images/rootfs.cpio \
+  -serial stdio \
+  -display curses \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -device e1000,netdev=net0
+~~~
+
+With this you can transfer files via SSH by using Secure Copy Protocol (SCP):
+
+~~~
+scp -P 2222 your_file  root@localhost:/
+~~~
+
+By using the above command, the file is put into the root directory of your QEMU instance and the benchmark binaries can finally be executed.
