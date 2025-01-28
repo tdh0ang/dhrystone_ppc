@@ -1,7 +1,5 @@
 # CoreMark PowerPC Compilation License 
-Down below is the EEMBC CoreMark license, taken from: https://github.com/eembc/coremark/blob/main/LICENSE.md. This repo, powerpc\_benchmarks make
-s use of the CoreMark benchmark software, specifically adapted to compile for PowerPC. The specific software is the official release v1.01 from 2
-009: https://github.com/eembc/coremark/releases/tag/v1.01.
+Down below is the EEMBC CoreMark license, taken from: https://github.com/eembc/coremark/blob/main/LICENSE.md. This repo, powerpc\_benchmarks makes use of the CoreMark benchmark software, specifically adapted to compile for PowerPC. The specific software is the official release v1.01 from 2009: https://github.com/eembc/coremark/releases/tag/v1.01.
 
 The only adaption made, is as described in the README\_CoreMark.md under "Cross Compiling". The linux folder was copied with all its content and
 named powerpc, the core\_portme.mak was modified to point to the correct compiler with the respective compiler flags. The intention is to facilit
