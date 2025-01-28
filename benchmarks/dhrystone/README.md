@@ -8,6 +8,3 @@ The dhrystone file can be downloaded here: https://www.netlib.org/benchmark/dhry
 
 You do not need to execute the file, only give it the permissions. Calling make will do everything for you. What make does here is to put compilation related files into the build directory and the source files into the src directory, while keeping the executable "dhrystone" in the main directory. Patches are also applied automatically. That should be it. 
 
-## Cross Compilation
-tbd
-
