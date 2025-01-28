@@ -46,3 +46,6 @@ clean:
 	@echo "Cleaning up build..."
 	rm -rf $(BUILD_DIR)
 
+cleanall: 
+	@echo "Cleaning all..."
+	rm -r dhrystone RATIONALE README_C submit.frm VARIATIONS build/ src/
