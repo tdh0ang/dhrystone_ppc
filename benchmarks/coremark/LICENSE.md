@@ -6,6 +6,7 @@ s use of the CoreMark benchmark software, specifically adapted to compile for Po
 The only adaption made, is as described in the README\_CoreMark.md under "Cross Compiling". The linux folder was copied with all its content and
 named powerpc, the core\_portme.mak was modified to point to the correct compiler with the respective compiler flags. The intention is to facilit
 ate cross compilation for PowerPC with the different benchmarks in this repo.
+
 ---
 
 # COREMARK® ACCEPTABLE USE AGREEMENT 
