@@ -8,3 +8,11 @@ The dhrystone file can be downloaded here: https://www.netlib.org/benchmark/dhry
 
 You do not need to execute the file, only give it the permissions. Calling make will do everything for you. What make does here is to put compilation related files into the build directory and the source files into the src directory, while keeping the executable "dhrystone" in the main directory. Patches are also applied automatically. That should be it. 
 
+## How to use
+Execute the binary after successful compilation:
+
+```bash
+./dhrystone
+```
+
+It'll ask for how many runs it should do and you can type it in and hit enter. Dhrystone runs and tells you the results at the end. 
