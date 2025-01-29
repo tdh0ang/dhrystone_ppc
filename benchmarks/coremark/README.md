@@ -13,26 +13,26 @@ To do that, since the PPC environment is based on linux, the contents of the lin
 ## How to use 
 To execute coremark, you need to know that it is quite specific, as in it needs seeds to run. You can read it in the `README_CoreMark.md`:
 
-~~~
+```
 CoreMark's executable takes several parameters as follows (but only if main() accepts arguments): 1st - A seed value used for initialization of data. 2nd - A seed value used for initialization of data. 3rd - A seed value used for initialization of data. 4th - Number of iterations (0 for auto : default value) 5th - Reserved for internal use. 6th - Reserved for internal use. 7th - For malloc users only, ovreride the size of the input data buffer.
-~~~
+```
 
 `core_main.c` also gives some more insight as seen below:
 
-~~~
+```
 Arguments:
 1 - first seed  : Any value
 2 - second seed : Must be identical to first for iterations to be identical
 3 - third seed  : Any value, should be at least an order of magnitude less then the input size, but bigger then 32.
 4 - Iterations  : Special, if set to 0, iterations will be automatically determined such that the benchmark will run between 10 to 100 secs
-~~~
+```
 
 Some more requirements are also described:
 
-~~~
+```
 1. The benchmark needs to run for at least 10 seconds.
 2. All validation must succeed for seeds 0,0,0x66 and 0x3415,0x3415,0x66, buffer size of 2000 bytes total.
-~~~
+```
 
 Buffer size of 2000 is a default define macro found in `coremark.h`, so you do not need to adjust anything. So, to do the validation according to the documentation, run:
 
